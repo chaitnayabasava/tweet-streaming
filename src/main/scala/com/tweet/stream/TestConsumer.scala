@@ -1,4 +1,5 @@
-package com.tweet.stream
+package com.tweet
+package stream
 
 import org.apache.kafka.clients.consumer.KafkaConsumer
 
@@ -10,7 +11,7 @@ import scala.jdk.CollectionConverters._
 
 object TestConsumer {
   def main(args: Array[String]): Unit = {
-    consumeFromKafka(topic = args(0), bootstrap_server = "localhost:9092")
+    consumeFromKafka(topic = args(0), bootstrap_server = KAFKA_BOOTSTRAP_SERVER)
   }
 
   def consumeFromKafka(topic: String, bootstrap_server: String): Unit = {
@@ -18,7 +19,7 @@ object TestConsumer {
     props.put("bootstrap.servers", bootstrap_server)
     props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
     props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
-    props.put("auto.offset.reset", "earliest")
+    props.put("auto.offset.reset", KAFKA_OFFSET_RESET)
     props.put("group.id", "consumer-group")
 
     val consumer: KafkaConsumer[String, String] = new KafkaConsumer[String, String](props)

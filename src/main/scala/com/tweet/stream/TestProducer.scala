@@ -1,4 +1,5 @@
-package com.tweet.stream
+package com.tweet
+package stream
 
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
 
@@ -6,7 +7,7 @@ import java.util.Properties
 
 object TestProducer {
   def main(args: Array[String]): Unit = {
-    writeToKafka(topic = args(0), bootstrap_server = "localhost:9092")
+    writeToKafka(topic = args(0), bootstrap_server = KAFKA_BOOTSTRAP_SERVER)
   }
 
   def writeToKafka(topic: String, bootstrap_server: String): Unit = {

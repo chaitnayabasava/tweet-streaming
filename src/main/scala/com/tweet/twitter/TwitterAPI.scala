@@ -1,4 +1,5 @@
-package com.tweet.twitter
+package com.tweet
+package twitter
 
 import requests.Response
 import ujson.Value.Value
@@ -14,8 +15,7 @@ class TwitterAPI {
   implicit val responseRW: default.ReadWriter[TwitterResponse] = upickle.default.macroRW[TwitterResponse]
 
   def getTweets(next_token: String = "", from: String = "elonmusk"): TwitterResponse = {
-    val uri = s"https://api.twitter.com/2/tweets/search/recent?query=from:$from" +
-    (if (next_token != "") s"&next_token=$next_token" else "")
+    val uri = s"$TWITTER_API?query=from:$from" + (if (next_token != "") s"&next_token=$next_token" else "")
 
     val request: Response = requests.get(
       uri, headers = Map("Authorization" -> s"Bearer ${this.tokens("bearer_token").str}")
@@ -25,7 +25,7 @@ class TwitterAPI {
   }
 
   def parseSecrets(): Value = {
-    val apiContent = Source.fromResource("twitter_secrets.json").mkString
+    val apiContent = Source.fromResource(TWITTER_SECRETS).mkString
     ujson.read(apiContent)
   }
 
