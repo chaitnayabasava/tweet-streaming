@@ -9,4 +9,4 @@ lazy val root = (project in file("."))
 
 libraryDependencies += "org.apache.kafka" %% "kafka" % "3.1.0"
 libraryDependencies += "com.lihaoyi" %% "upickle" % "2.0.0"
-libraryDependencies += "com.lihaoyi" %% "requests" % "0.7.0"
+libraryDependencies += "com.lihaoyi" %% "requests" % "0.7.1"

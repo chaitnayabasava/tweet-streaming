@@ -4,7 +4,7 @@ import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
 
 import java.util.Properties
 
-object TweetProducer {
+object TestProducer {
   def main(args: Array[String]): Unit = {
     writeToKafka(topic = args(0), bootstrap_server = "localhost:9092")
   }

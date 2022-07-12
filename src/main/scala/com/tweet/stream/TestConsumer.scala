@@ -1,14 +1,14 @@
 package com.tweet.stream
 
-import org.apache.kafka.clients.consumer.{ConsumerRecord, KafkaConsumer}
+import org.apache.kafka.clients.consumer.KafkaConsumer
 
 import java.time.Duration
 import java.util.Properties
 import java.util.regex.Pattern
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
-object TweetConsumer {
+object TestConsumer {
   def main(args: Array[String]): Unit = {
     consumeFromKafka(topic = args(0), bootstrap_server = "localhost:9092")
   }

@@ -18,16 +18,22 @@ class TwitterAPI {
     (if (next_token != "") s"&next_token=$next_token" else "")
 
     val request: Response = requests.get(
-      uri,
-      headers = Map("Authorization" -> s"Bearer ${this.tokens("bearer_token").str}")
+      uri, headers = Map("Authorization" -> s"Bearer ${this.tokens("bearer_token").str}")
     )
     val json = upickle.default.read[TwitterResponse](request.text)
     json
   }
 
   def parseSecrets(): Value = {
-    val apiContent = Source.fromResource("secrets.json").mkString
+    val apiContent = Source.fromResource("twitter_secrets.json").mkString
     ujson.read(apiContent)
   }
 
+}
+
+object TwitterAPI {
+  def main(args: Array[String]): Unit = {
+    val twitterAPI = new TwitterAPI()
+    println(twitterAPI.getTweets().data.length)
+  }
 }
