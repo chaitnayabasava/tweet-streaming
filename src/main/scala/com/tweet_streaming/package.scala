@@ -2,7 +2,7 @@ package com
 
 import com.typesafe.config.{Config, ConfigFactory}
 
-package object tweet {
+package object tweet_streaming {
   private val conf: Config = ConfigFactory.load()
 
   val TWITTER_SECRETS: String = conf.getString("twitter.secrets_file")

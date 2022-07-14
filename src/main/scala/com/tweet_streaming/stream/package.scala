@@ -1,4 +1,4 @@
-package com.tweet
+package com.tweet_streaming
 
 package object stream {
 

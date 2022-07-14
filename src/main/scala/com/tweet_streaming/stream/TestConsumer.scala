@@ -1,4 +1,4 @@
-package com.tweet
+package com.tweet_streaming
 package stream
 
 import org.apache.kafka.clients.consumer.{ConsumerConfig, KafkaConsumer}
@@ -33,6 +33,7 @@ class TestConsumer {
       override def run(): Unit = {
         log.info("shutdown initialized")
         // when invoked, the next time poll is called it will throw WakeupException and exit the loop
+        // needs to be called in a separate thread from which the consumer is running
         consumer.wakeup()
 
         // join main thread to allow execution of main thread
