@@ -10,9 +10,9 @@ import java.util.Properties
 class TestProducer {
   private val log: Logger = LoggerFactory.getLogger(classOf[TestProducer])
 
-  def writeToKafka(topic: String, bootstrap_server: String): Unit = {
+  def writeToKafka(topic: String): Unit = {
     val props = new Properties()
-    props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrap_server)
+    props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, KAFKA_BOOTSTRAP_SERVER)
     props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, classOf[StringSerializer].getName)
     props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, classOf[StringSerializer].getName)
 
@@ -46,6 +46,6 @@ object TestProducer {
     val test = new TestProducer()
     test.log.info("Started producer!")
 
-    test.writeToKafka(topic = args(0), bootstrap_server = KAFKA_BOOTSTRAP_SERVER)
+    test.writeToKafka(topic = args(0))
   }
 }
